@@ -1,7 +1,7 @@
 package samaritan.affirm;
 
-import samaritan.Predicate;
+public interface Affirmative<T> {
 
-public interface Affirmative<T> extends Predicate<T> {
+	boolean affirm(T reference, Object... parameters);
 
 }
