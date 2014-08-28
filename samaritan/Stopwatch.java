@@ -15,6 +15,10 @@ public final class Stopwatch {
 		return nanoTime() - time;
 	}
 
+	public long elapsed(TimeUnit desiredUnit) {
+		return desiredUnit.convert(elapsed(), NANOSECONDS);
+	}
+
 	public void printElapsed(String format) {
 		System.err.printf(format, elapsed() / 1_000_000D);
 	}
