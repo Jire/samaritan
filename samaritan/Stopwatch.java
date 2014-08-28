@@ -1,6 +1,9 @@
 package samaritan;
 
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static java.lang.System.nanoTime;
+
+import java.util.concurrent.TimeUnit;
 
 @Immutable
 public final class Stopwatch {
@@ -13,6 +16,10 @@ public final class Stopwatch {
 
 	public long elapsed() {
 		return nanoTime() - time;
+	}
+
+	public long elapsed(TimeUnit desiredUnit) {
+		return desiredUnit.convert(elapsed(), NANOSECONDS);
 	}
 
 	public void printElapsed(String format) {
