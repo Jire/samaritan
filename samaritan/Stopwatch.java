@@ -1,7 +1,7 @@
 package samaritan;
 
-import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static java.lang.System.nanoTime;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,14 +20,6 @@ public final class Stopwatch {
 
 	public long elapsed(TimeUnit desiredUnit) {
 		return desiredUnit.convert(elapsed(), NANOSECONDS);
-	}
-
-	public void printElapsed(String format) {
-		System.err.printf(format, elapsed() / 1_000_000D);
-	}
-
-	public void printElapsed() {
-		printElapsed("Time elapsed: %sms\n");
 	}
 
 	public static Stopwatch start() {
