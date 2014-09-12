@@ -8,12 +8,16 @@ import samaritan.Immutable;
 @Immutable
 final class EventSubscriberPredicate implements Predicate<Method> {
 
+	private static final int MINIMUM_PARAMETERS = 0;
+	private static final int MAXIMUM_PARAMETERS = 2;
+
 	private static final Predicate<Method> INSTANCE = new EventSubscriberPredicate();
 
 	@Override
 	public boolean test(Method t) {
-		return t.getParameterTypes().length == 1
-				&& t.isAnnotationPresent(EventSubscriber.class)
+		int params = t.getParameterCount();
+		return t.isAnnotationPresent(EventSubscriber.class)
+				&& params > MINIMUM_PARAMETERS && params <= MAXIMUM_PARAMETERS
 				&& Event.class.isAssignableFrom(t.getParameterTypes()[0]);
 	}
 
