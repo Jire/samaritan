@@ -4,6 +4,6 @@ public interface Binding<T> {
 
 	Class<T> type();
 
-	<R> R get(Class<?> type);
+	<R extends T> R get(Class<?> type);
 
 }

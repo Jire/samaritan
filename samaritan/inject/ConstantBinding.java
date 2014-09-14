@@ -1,7 +1,7 @@
 package samaritan.inject;
 
 public final class ConstantBinding<T> extends AbstractBinding<T> {
-	
+
 	private final T value;
 
 	public ConstantBinding(Class<T> type, T value) {
@@ -11,7 +11,7 @@ public final class ConstantBinding<T> extends AbstractBinding<T> {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <R> R get(Class<?> type) {
+	public <R extends T> R get(Class<?> type) {
 		return (R) value;
 	}
 

@@ -12,7 +12,7 @@ public final class ImplementationBinding<T> extends AbstractBinding<T> {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <R> R get(Class<?> type) {
+	public <R extends T> R get(Class<?> type) {
 		return (R) implementation;
 	}
 
