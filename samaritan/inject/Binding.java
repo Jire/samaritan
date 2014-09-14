@@ -1,9 +1,9 @@
 package samaritan.inject;
 
-import java.util.function.Consumer;
+public interface Binding<T> {
 
-public interface Binding extends Consumer<Binder> {
+	Class<T> type();
 
-	<T> T get(T type);
+	<R> R get(Class<?> type);
 
 }

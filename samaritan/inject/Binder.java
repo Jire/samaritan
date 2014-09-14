@@ -1,11 +1,16 @@
 package samaritan.inject;
 
+import samaritan.affirm.Affirm;
+
 public interface Binder {
 
-	void install(Module module);
+	void bind(Binding<?> binding);
 
-	<B extends Binding> void bind(B binding);
+	<T, R extends T> R get(Class<T> type);
 
-	<B extends Binding, T> T get(B binding, T type);
+	default void install(Module module) {
+		Affirm.notNull(module);
+		module.configure(this);
+	}
 
 }

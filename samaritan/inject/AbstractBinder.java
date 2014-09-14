@@ -1,27 +1,25 @@
 package samaritan.inject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import samaritan.affirm.Affirm;
 
 public abstract class AbstractBinder implements Binder {
 
+	private final Map<Class<?>, Binding<?>> bindings = new HashMap<>();
+
 	@Override
-	public final void install(Module module) {
-		Affirm.notNull(module);
-		module.configure(this);
+	public void bind(Binding<?> binding) {
+		Affirm.notNull(binding);
+		bindings.put(binding.type(), binding);
 	}
 
 	@Override
-	public <B extends Binding> void bind(B binding) {
-		Affirm.notNull(binding);
-		binding.accept(this);
-	}
-
-	@Override
-	public <B extends Binding, T> T get(B binding, T type) {
-		Affirm.notNull(binding);
+	@SuppressWarnings("unchecked")
+	public <T, R extends T> R get(Class<T> type) {
 		Affirm.notNull(type);
-
-		return binding.get(type);
+		return (R) bindings.get(type).get(type);
 	}
 
 }

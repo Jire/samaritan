@@ -41,7 +41,7 @@ public abstract class AbstractEventAdmin implements EventAdmin {
 					try {
 						Method method = pair.getKey();
 						EventListener listener = pair.getValue();
-
+						
 						if (method.getParameterCount() == 2)
 							method.invoke(listener, event, listener);
 						else

@@ -8,8 +8,7 @@ import samaritan.Immutable;
 @Immutable
 final class EventSubscriberPredicate implements Predicate<Method> {
 
-	private static final int MINIMUM_PARAMETERS = 0;
-	private static final int MAXIMUM_PARAMETERS = 2;
+	private static final int MINIMUM_PARAMETERS = 0, MAXIMUM_PARAMETERS = 2;
 
 	private static final Predicate<Method> INSTANCE = new EventSubscriberPredicate();
 

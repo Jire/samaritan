@@ -1,9 +1,13 @@
 package samaritan.inject;
 
+import java.util.stream.Stream;
+
 public interface Injector {
 
-	<T> T getInstance(Class<?> type);
-
 	Binder getBinder();
+	
+	Stream<Module> getModules();
+
+	<T> T getInstance(Class<? extends T> type);
 
 }
