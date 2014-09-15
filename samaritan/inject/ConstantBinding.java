@@ -1,5 +1,8 @@
 package samaritan.inject;
 
+import samaritan.Immutable;
+
+@Immutable
 public final class ConstantBinding<T> extends AbstractBinding<T> {
 
 	private final T value;

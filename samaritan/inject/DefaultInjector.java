@@ -3,6 +3,10 @@ package samaritan.inject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import samaritan.Immutable;
+import samaritan.Primitives;
+
+@Immutable
 public final class DefaultInjector extends AbstractInjector {
 
 	public DefaultInjector(Binder binder, Module... modules) {
@@ -18,7 +22,10 @@ public final class DefaultInjector extends AbstractInjector {
 			Object[] parameters = new Object[parameterTypes.length];
 			for (int i = 0; i < parameters.length; i++) {
 				Class<?> parameter = parameterTypes[i];
-				if (parameter.isPrimitive()) {
+				boolean primitive = parameter.isPrimitive();
+				if (primitive || parameter.isAssignableFrom(String.class)) {
+					if (primitive)
+						parameter = Primitives.wrap(parameter);
 					parameters[i] = getBinder().get(parameter);
 					continue;
 				}

@@ -1,5 +1,8 @@
 package samaritan.inject;
 
+import samaritan.Immutable;
+
+@Immutable
 public final class ImplementationBinding<T> extends AbstractBinding<T> {
 
 	private final Class<? extends T> implementation;
