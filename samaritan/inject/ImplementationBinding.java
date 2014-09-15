@@ -13,6 +13,10 @@ public final class ImplementationBinding<T> extends AbstractBinding<T> {
 		this.implementation = implementation;
 	}
 
+	public ImplementationBinding(Class<T> type) {
+		this(type, type);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public <R extends T> R get(Class<?> type) {
