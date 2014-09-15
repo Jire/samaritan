@@ -30,4 +30,17 @@ public final class Multitudes {
 		return copyOf(array, 0, index);
 	}
 
+	public static final <T> T[] appendEnd(T[] array, Object... values) {
+		return insert(array, array.length, values);
+	}
+
+	public static final <T> T[] appendStart(T[] array, Object... values) {
+		return insert(array, 0, values);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static final <T> T[] insert(T[] array, int start, Object... values) {
+		return (T[]) Stream.concat(Stream.concat(Stream.of(valuesBefore(array, start)), Stream.of(values)), Stream.of(valuesAfter(array, start))).toArray(Object[]::new);
+	}
+
 }
