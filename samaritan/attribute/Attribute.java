@@ -1,8 +1,10 @@
 package samaritan.attribute;
 
 import static samaritan.affirm.Affirm.notNull;
+import samaritan.Immutable;
 import samaritan.Nullable;
 
+@Immutable
 final class Attribute<T> {
 
 	private final AttributeKey<T> key;
