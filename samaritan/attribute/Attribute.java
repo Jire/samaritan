@@ -1,8 +1,10 @@
 package samaritan.attribute;
 
 import static samaritan.affirm.Affirm.notNull;
+import samaritan.Immutable;
 import samaritan.Nullable;
 
+@Immutable
 final class Attribute<T> {
 
 	private final AttributeKey<T> key;
@@ -14,11 +16,11 @@ final class Attribute<T> {
 		this.value = value;
 	}
 
-	protected AttributeKey<T> getKey() {
+	public AttributeKey<T> getKey() {
 		return key;
 	}
 
-	protected T getValue() {
+	public T getValue() {
 		return value;
 	}
 

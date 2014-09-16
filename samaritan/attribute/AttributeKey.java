@@ -1,8 +1,10 @@
 package samaritan.attribute;
 
 import static samaritan.affirm.Affirm.notNull;
+import samaritan.Immutable;
 import samaritan.Nullable;
 
+@Immutable
 public final class AttributeKey<T> {
 
 	private final String name;
@@ -14,11 +16,11 @@ public final class AttributeKey<T> {
 		this.initial = initial;
 	}
 
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
 
-	protected T getInitial() {
+	public T getInitial() {
 		return initial;
 	}
 
