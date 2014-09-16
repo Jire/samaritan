@@ -1,5 +1,8 @@
 package samaritan;
 
+import static java.util.stream.Stream.concat;
+import static java.util.stream.Stream.of;
+
 @Immutable
 public final class Multitudes {
 
@@ -40,7 +43,7 @@ public final class Multitudes {
 
 	@SuppressWarnings("unchecked")
 	public static final <T> T[] insert(T[] array, int start, Object... values) {
-		return (T[]) Stream.concat(Stream.concat(Stream.of(valuesBefore(array, start)), Stream.of(values)), Stream.of(valuesAfter(array, start))).toArray(Object[]::new);
+		return (T[]) concat(concat(of(valuesBefore(array, start)), of(values)), of(valuesAfter(array, start))).toArray(Object[]::new);
 	}
 
 }
