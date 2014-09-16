@@ -14,23 +14,25 @@ public final class Affirm {
 	private static final Affirmative<Boolean> TRUTH = new TruthAffirmative();
 	private static final Affirmative<Number> NUMBER_BETWEEN = new NumberBetweenAffirmative();
 
-	public static <T> void affirm(Affirmative<T> affirmative, T reference,
+	public static <T> T affirm(Affirmative<T> affirmative, T reference,
 			Object... parameters) {
 		if (!affirmative.affirm(reference, parameters))
 			throw new IllegalStateException();
+		return reference;
 	}
 
-	public static <T> void notNull(T reference) {
-		affirm(NOT_NULL, reference);
+	@SuppressWarnings("unchecked")
+	public static <T> T notNull(T reference) {
+		return (T) affirm(NOT_NULL, reference);
 	}
 
-	public static void truth(boolean reference) {
-		affirm(TRUTH, reference);
+	public static boolean truth(boolean reference) {
+		return affirm(TRUTH, reference);
 	}
 
-	public static void between(Number reference, Number first, Number last,
+	public static Number between(Number reference, Number first, Number last,
 			Number... excluded) {
-		affirm(NUMBER_BETWEEN, reference, first, last, excluded);
+		return affirm(NUMBER_BETWEEN, reference, first, last, excluded);
 	}
 
 }
