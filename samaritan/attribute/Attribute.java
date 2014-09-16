@@ -16,11 +16,11 @@ final class Attribute<T> {
 		this.value = value;
 	}
 
-	protected AttributeKey<T> getKey() {
+	public AttributeKey<T> getKey() {
 		return key;
 	}
 
-	protected T getValue() {
+	public T getValue() {
 		return value;
 	}
 

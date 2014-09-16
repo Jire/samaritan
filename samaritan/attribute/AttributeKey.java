@@ -16,11 +16,11 @@ public final class AttributeKey<T> {
 		this.initial = initial;
 	}
 
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
 
-	protected T getInitial() {
+	public T getInitial() {
 		return initial;
 	}
 
