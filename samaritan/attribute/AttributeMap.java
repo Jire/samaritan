@@ -19,7 +19,6 @@ public final class AttributeMap {
 			Attribute<T> attr = (Attribute<T>) attributes.get(key);
 			return attr.getValue();
 		}
-
 		return setAndGet(key, key.getInitial());
 	}
 
@@ -29,10 +28,8 @@ public final class AttributeMap {
 	}
 
 	public <T> T setIfAbsent(AttributeKey<T> key, @Nullable T value) {
-		if (contains(key)) {
+		if (contains(key))
 			return get(key);
-		}
-
 		return setAndGet(key, value);
 	}
 
