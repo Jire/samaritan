@@ -8,7 +8,6 @@ import java.util.Map;
 import samaritan.Immutable;
 import samaritan.Nullable;
 
-@Immutable
 public final class AttributeMap {
 
 	private final Map<AttributeKey<?>, Attribute<?>> attributes = new HashMap<>();
