@@ -1,8 +1,12 @@
 package samaritan;
 
+import static java.util.Arrays.asList;
 import static java.util.stream.Stream.concat;
 import static java.util.stream.Stream.of;
-import static java.util.Arrays.asList;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Immutable
 public final class Multitudes {
