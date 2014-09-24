@@ -20,6 +20,23 @@ public abstract class AbstractModule implements Module {
 		}
 	}
 
+	protected final Binder getBinder() {
+		Affirm.truth(binder != null);
+		return binder;
+	}
+
 	protected abstract void configure();
+
+	public final <T> ImplementationBindingBuilder<T> bind(Class<T> type) {
+		Affirm.notNull(type);
+		return new ImplementationBindingBuilder<T>(getBinder(), type);
+	}
+
+	@SuppressWarnings("unchecked")
+	public final <T> ConstantBindingBuilder<T> bind(T value) {
+		Affirm.notNull(value);
+		return new ConstantBindingBuilder<T>(getBinder(),
+				(Class<T>) value.getClass(), value);
+	}
 
 }
