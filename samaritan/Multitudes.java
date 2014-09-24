@@ -2,6 +2,7 @@ package samaritan;
 
 import static java.util.stream.Stream.concat;
 import static java.util.stream.Stream.of;
+import static java.util.Arrays.asList;
 
 @Immutable
 public final class Multitudes {
@@ -44,6 +45,13 @@ public final class Multitudes {
 	@SuppressWarnings("unchecked")
 	public static final <T> T[] insert(T[] array, int start, Object... values) {
 		return (T[]) concat(concat(of(valuesBefore(array, start)), of(values)), of(valuesAfter(array, start))).toArray(Object[]::new);
+	}
+	
+	public static <K> Map<K, List<K>> asMap(K[][] array) {
+		Map<K, List<K>> map = new HashMap<>(array.length);
+		for (K[] k : array)
+			map.put(k[0], (List<K>) asList(valuesAfter(k, 1)));
+		return map;
 	}
 
 }
