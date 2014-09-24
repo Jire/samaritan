@@ -18,7 +18,7 @@ public final class DependencyInjection {
 
 	public static Injector createInjector(Module... modules) {
 		Binder binder = new DefaultBinder();
-		Stream.of(modules).forEach(module -> binder.install(module));
+		Stream.of(modules).forEach(binder::install);
 		return new DefaultInjector(binder, modules);
 	}
 
