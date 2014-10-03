@@ -3,24 +3,28 @@ package samaritan;
 import java.util.HashMap;
 import java.util.Map;
 
+import samaritan.affirm.Affirm;
+
+@Immutable
 public final class Primitives {
 
-	private final static Map<Class<?>, Class<?>> wrappers = new HashMap<Class<?>, Class<?>>();
-	
+	private static final Map<Class<?>, Class<?>> WRAPPERS = new HashMap<>();
+
 	static {
-	    wrappers.put(boolean.class, Boolean.class);
-	    wrappers.put(byte.class, Byte.class);
-	    wrappers.put(short.class, Short.class);
-	    wrappers.put(char.class, Character.class);
-	    wrappers.put(int.class, Integer.class);
-	    wrappers.put(long.class, Long.class);
-	    wrappers.put(float.class, Float.class);
-	    wrappers.put(double.class, Double.class);
+		WRAPPERS.put(boolean.class, Boolean.class);
+		WRAPPERS.put(byte.class, Byte.class);
+		WRAPPERS.put(short.class, Short.class);
+		WRAPPERS.put(char.class, Character.class);
+		WRAPPERS.put(int.class, Integer.class);
+		WRAPPERS.put(long.class, Long.class);
+		WRAPPERS.put(float.class, Float.class);
+		WRAPPERS.put(double.class, Double.class);
 	}
 
-	@SuppressWarnings("unchecked")
-	public static <T> Class<T> wrap(Class<T> type) {
-		return (Class<T>) wrappers.get(type);
+	public static Class<?> wrap(Class<?> type) {
+		Affirm.notNull(type);
+
+		return WRAPPERS.get(type);
 	}
-	
+
 }
