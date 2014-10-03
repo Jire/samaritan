@@ -11,7 +11,7 @@ final class Attribute<T> {
 
 	private final T value;
 
-	protected Attribute(AttributeKey<T> key, @Nullable T value) {
+	Attribute(AttributeKey<T> key, @Nullable T value) {
 		this.key = notNull(key);
 		this.value = value;
 	}

@@ -22,6 +22,7 @@ public final class DefaultInjector extends AbstractInjector {
 			Object[] parameters = new Object[parameterTypes.length];
 			for (int i = 0; i < parameters.length; i++) {
 				Class<?> parameter = parameterTypes[i];
+				
 				boolean primitive = parameter.isPrimitive();
 				if (primitive || parameter.isAssignableFrom(String.class)) {
 					if (primitive)
