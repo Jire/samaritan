@@ -1,6 +1,7 @@
 package samaritan.inject;
 
-import static java.util.stream.Stream.of;
+import java.util.stream.Stream;
+
 import samaritan.Immutable;
 import samaritan.Objects;
 
@@ -17,7 +18,7 @@ public final class DependencyInjection {
 
 	public static Injector createInjector(Module... modules) {
 		Binder binder = new DefaultBinder();
-		of(modules).forEach(binder::install);
+		Stream.of(modules).forEach(module -> binder.install(module));
 		return new DefaultInjector(binder, modules);
 	}
 
