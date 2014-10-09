@@ -50,11 +50,11 @@ public final class Multitudes {
 	public static <T> T[] insert(T[] array, int start, Object... values) {
 		return (T[]) concat(concat(of(valuesBefore(array, start)), of(values)), of(valuesAfter(array, start))).toArray(Object[]::new);
 	}
-	
+
 	public static <K> Map<K, List<K>> asMap(K[][] array) {
 		Map<K, List<K>> map = new HashMap<>(array.length);
 		for (K[] k : array)
-			map.put(k[0], (List<K>) asList(valuesAfter(k, 1)));
+			map.put(k[0], asList(valuesAfter(k, 1)));
 		return map;
 	}
 
