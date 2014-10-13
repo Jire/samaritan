@@ -18,16 +18,16 @@ public final class Functions {
 	}
 
 	@SafeVarargs
-	public static <T> Varargs<T> varargs(T... accepted) {
-		return new Varargs<T>(Affirm.notNull(accepted));
+	public static <T> VarargsHelper<T> varargs(T... accepted) {
+		return new VarargsHelper<T>(Affirm.notNull(accepted));
 	}
 
-	public static final class Varargs<T> {
+	public static final class VarargsHelper<T> {
 
 		private final T[] accepted;
 
 		@SafeVarargs
-		private Varargs(T... accepted) {
+		private VarargsHelper(T... accepted) {
 			this.accepted = accepted;
 		}
 
