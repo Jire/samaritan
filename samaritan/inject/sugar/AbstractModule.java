@@ -21,8 +21,7 @@ public abstract class AbstractModule implements Module {
 	}
 
 	protected final Binder getBinder() {
-		Affirm.truth(binder != null);
-		return binder;
+		return Affirm.notNull(binder);
 	}
 
 	protected abstract void configure();

@@ -7,7 +7,7 @@ import samaritan.Immutable;
 import samaritan.Primitives;
 
 @Immutable
-public final class DefaultInjector extends AbstractInjector {
+final class DefaultInjector extends AbstractInjector {
 
 	public DefaultInjector(Binder binder, Module... modules) {
 		super(binder, modules);

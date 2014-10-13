@@ -5,7 +5,7 @@ import java.util.Map;
 
 import samaritan.affirm.Affirm;
 
-public abstract class AbstractBinder implements Binder {
+abstract class AbstractBinder implements Binder {
 
 	private final Map<Class<?>, Binding<?>> bindings = new HashMap<>();
 

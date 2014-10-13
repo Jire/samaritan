@@ -5,7 +5,7 @@ import java.lang.annotation.Annotation;
 import samaritan.inject.Binder;
 import samaritan.inject.ConstantBinding;
 
-public final class ConstantBindingBuilder<T> extends TypedBindingBuilder<T> {
+final class ConstantBindingBuilder<T> extends TypedBindingBuilder<T> {
 
 	private final T value;
 

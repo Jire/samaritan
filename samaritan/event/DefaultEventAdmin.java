@@ -1,6 +1,7 @@
 package samaritan.event;
 
 import static java.util.Optional.ofNullable;
+import static samaritan.Functions.varargs;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -26,11 +27,11 @@ public final class DefaultEventAdmin extends AbstractEventAdmin {
 			@SuppressWarnings("unchecked")
 			Class<? extends Event> event = (Class<? extends Event>) method
 					.getParameterTypes()[0];
-			Map<Method, EventListener> methods = ofNullable(getEvents().get(event))
-															.orElse(new HashMap<>());
+			Map<Method, EventListener> methods = ofNullable(
+					getEvents().get(event)).orElse(new HashMap<>());
 			methods.put(method, listener);
 			method.setAccessible(true);
-			
+
 			getEvents().put(event, methods);
 		};
 	}
@@ -42,11 +43,8 @@ public final class DefaultEventAdmin extends AbstractEventAdmin {
 			try {
 				Method method = pair.getKey();
 				EventListener listener = pair.getValue();
-
-				if (method.getParameterCount() == 2)
-					method.invoke(listener, event, listener);
-				else
-					method.invoke(listener, event);
+				method.invoke(varargs(method.getParameterCount() == 2,
+						listener, event).pass(listener));
 			} catch (Exception e) {
 				// Still delegating... find a better solution
 				throw new RuntimeException(e);
