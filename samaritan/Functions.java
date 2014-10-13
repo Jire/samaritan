@@ -18,23 +18,25 @@ public final class Functions {
 	}
 
 	@SafeVarargs
-	public static <T> Varargs<T> varargs(boolean condition, T... accepted) {
-		Affirm.notNull(accepted);
-		return new Varargs<T>(condition, accepted);
+	public static <T> Varargs<T> varargs(T... accepted) {
+		return new Varargs<T>(Affirm.notNull(accepted));
 	}
 
 	public static final class Varargs<T> {
 
-		private final boolean condition;
 		private final T[] accepted;
 
 		@SafeVarargs
-		private Varargs(boolean condition, T... accepted) {
-			this.condition = condition;
+		private Varargs(T... accepted) {
 			this.accepted = accepted;
 		}
 
-		public T[] pass(@SuppressWarnings("unchecked") T... checked) {
+		public T[] pass() {
+			return accepted;
+		}
+
+		public T[] pass(boolean condition,
+				@SuppressWarnings("unchecked") T... checked) {
 			Affirm.notNull(checked);
 			return condition ? (T[]) appendEnd(accepted, checked)
 					: (T[]) accepted;
