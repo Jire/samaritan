@@ -43,8 +43,9 @@ public final class DefaultEventAdmin extends AbstractEventAdmin {
 			try {
 				Method method = pair.getKey();
 				EventListener listener = pair.getValue();
-				method.invoke(varargs(listener, event).pass(
-						method.getParameterCount() == 2, listener));
+				varargs(1, 2, 3).add();
+				method.invoke(varargs(listener, event).when(
+						method.getParameterCount() == 2, listener).done());
 			} catch (Exception e) {
 				// Still delegating... find a better solution
 				throw new RuntimeException(e);

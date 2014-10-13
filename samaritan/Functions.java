@@ -31,15 +31,18 @@ public final class Functions {
 			this.accepted = accepted;
 		}
 
-		public T[] pass() {
+		public T[] done() {
 			return accepted;
 		}
 
-		public T[] pass(boolean condition,
-				@SuppressWarnings("unchecked") T... checked) {
-			Affirm.notNull(checked);
-			return condition ? (T[]) appendEnd(accepted, checked)
-					: (T[]) accepted;
+		public VarargsHelper<T> add(@SuppressWarnings("unchecked") T... toAdd) {
+			Affirm.notNull(toAdd);
+			return new VarargsHelper<T>(appendEnd(accepted, toAdd));
+		}
+
+		public VarargsHelper<T> when(boolean condition,
+				@SuppressWarnings("unchecked") T... toAdd) {
+			return condition ? add(toAdd) : varargs(done());
 		}
 
 	}
