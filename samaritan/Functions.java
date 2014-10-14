@@ -22,7 +22,7 @@ public final class Functions {
 		return new VarargsHelper<T>(Affirm.notNull(accepted));
 	}
 
-	public static final class VarargsHelper<T> {
+	public static class VarargsHelper<T> {
 
 		private final T[] accepted;
 
@@ -40,9 +40,36 @@ public final class Functions {
 			return new VarargsHelper<T>(appendEnd(accepted, toAdd));
 		}
 
-		public VarargsHelper<T> when(boolean condition,
-				@SuppressWarnings("unchecked") T... toAdd) {
-			return condition ? add(toAdd) : varargs(done());
+		public VarargsHelper<T> when(boolean condition) {
+			return condition ? varargs(done())
+					: new NoAddVarargsHelper<T>(this);
+		}
+
+		private static final class NoAddVarargsHelper<T> extends
+				VarargsHelper<T> {
+
+			private final VarargsHelper<T> helper;
+
+			private NoAddVarargsHelper(VarargsHelper<T> helper) {
+				this.helper = helper;
+			}
+
+			@Override
+			public T[] done() {
+				return helper.done();
+			}
+
+			@Override
+			public VarargsHelper<T> add(
+					@SuppressWarnings("unchecked") T... toAdd) {
+				return this;
+			}
+
+			@Override
+			public VarargsHelper<T> when(boolean condition) {
+				return helper.when(condition);
+			}
+
 		}
 
 	}
